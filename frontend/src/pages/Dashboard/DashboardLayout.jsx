@@ -19,10 +19,10 @@ const DashboardLayout = () => {
     }, [location]);
 
     return (
-        <div className="flex h-[90vh] border-t">
+        <div className="flex h-[90vh] border-t container mx-auto">
             {/* Sidebar */}
             <div className="border-r">
-            <DashboardSidebar open={sidebarOpen} setOpen={setSidebarOpen} role={currentRole} />
+                <DashboardSidebar open={sidebarOpen} setOpen={setSidebarOpen} role={currentRole} />
             </div>
 
             {/* Main Content */}
@@ -48,10 +48,13 @@ const DashboardLayout = () => {
                     </div>
                 </header>
 
-                <main className="flex-1 overflow-x-hidden overflow-y-auto scrollbar-hide">
+                <main className="flex-1 overflow-x-hidden overflow-y-auto scrollbar-hide relative">
                     <div className="container mx-auto px-6 py-8">
                         <Outlet />
                     </div>
+
+                    {/* Blur Effect at Bottom */}
+                    <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-white to-white/80 blur-md pointer-events-none"></div>
                 </main>
             </div>
         </div>

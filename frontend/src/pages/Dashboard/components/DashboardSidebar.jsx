@@ -1,13 +1,69 @@
 import { Button } from '@/components/ui/button';
 import { SIDEBAR_ITEMS } from '@/lib/DashboardSidebarConfig';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { LogOut } from 'lucide-react';
+import { useAuth } from '@/hooks/useAuth';
+import { useDispatch } from 'react-redux';
+import { logout } from '@/features/auth/authSlice';
+import Cookies from 'js-cookie';
 
-const DashboardSidebar = ({ open, setOpen, role }) => {
-  const items = SIDEBAR_ITEMS[role] || [];
+const DashboardSidebar = ({ open, setOpen }) => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { user, isAuthenticated } = useAuth();
+  
+  const role = user?.role || 'applicant';
+  const items = SIDEBAR_ITEMS[role] || [];
 
   const isActive = (href) => location.pathname === href;
+
+  // Get user display information based on role and useAuth data
+  const getUserDisplayInfo = () => {
+    if (!isAuthenticated || !user) {
+      return { name: 'User', email: 'user@example.com', initial: 'U' };
+    }
+
+    switch (user.role) {
+      case 'applicant':
+        return {
+          name: user.firstName,
+          email: user.email,
+          initial: user.firstName ? user.firstName[0].toUpperCase() : 'A'
+        };
+      case 'company':
+        return {
+          name: user.companyName,
+          email: user.contactPersonEmail,
+          initial: user.companyName ? user.companyName[0].toUpperCase() : 'C'
+        };
+      case 'admin':
+        return {
+          name: 'Administrator',
+          email: user.email,
+          initial: 'A'
+        };
+      default:
+        return {
+          name: 'User',
+          email: 'user@example.com',
+          initial: 'U'
+        };
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      dispatch(logout());
+      Cookies.remove('user');
+      Cookies.remove('token');
+      navigate("/signin");
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
+
+  const userInfo = getUserDisplayInfo();
 
   return (
     <>
@@ -25,20 +81,18 @@ const DashboardSidebar = ({ open, setOpen, role }) => {
           open ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
-        {/* Logo and Header */}
         <div className="flex flex-col h-full">
+          {/* Header */}
           <div className="flex items-center justify-center h-16 border-b bg-gray-50">
             <span className="text-xl font-semibold text-gray-800 capitalize">
-              {role} Portal
+              {role === 'applicant' ? 'Candidate' : role} Portal
             </span>
           </div>
 
-          {/* Navigation Section */}
+          {/* Navigation */}
           <nav className="flex-1 overflow-y-auto">
             <div className="px-3 py-4">
-              {/* Navigation Groups */}
               <div className="space-y-8">
-                {/* Main Navigation */}
                 <div className="space-y-1">
                   {items.map((item) => (
                     <Link
@@ -61,19 +115,23 @@ const DashboardSidebar = ({ open, setOpen, role }) => {
             </div>
           </nav>
 
-          {/* Footer Section */}
+          {/* Footer with User Info */}
           <div className="border-t p-4">
             <div className="space-y-4">
-              {/* User Profile Preview */}
+              {/* User Profile */}
               <div className="flex items-center space-x-3 px-3 py-2">
                 <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
                   <span className="text-sm font-medium text-gray-600">
-                    {role.charAt(0).toUpperCase()}
+                    {userInfo.initial}
                   </span>
                 </div>
-                <div className="flex-1">
-                  <p className="text-sm font-medium text-gray-900 capitalize">{role} User</p>
-                  <p className="text-xs text-gray-500">user@example.com</p>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium text-gray-900 truncate">
+                    {userInfo.name}
+                  </p>
+                  <p className="text-xs text-gray-500 truncate">
+                    {userInfo.email}
+                  </p>
                 </div>
               </div>
 
@@ -81,10 +139,7 @@ const DashboardSidebar = ({ open, setOpen, role }) => {
               <Button 
                 variant="" 
                 className="w-full flex items-center justify-center"
-                onClick={() => {
-                  // Add logout logic here
-                  console.log('Logout clicked');
-                }}
+                onClick={handleLogout}
               >
                 <LogOut className="w-4 h-4 mr-2" />
                 Logout

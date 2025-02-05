@@ -57,31 +57,34 @@ const SlidingBanner = ({
     };
 
     const VerticalCard = ({ item }) => (
-        <Card className="h-full hover:shadow-lg transition-all duration-300 cursor-pointer group">
-        <CardContent className="p-4">
-          <div className="flex flex-row items-start sm:items-center gap-3">
-            <div className="flex-shrink-0">
-              {item.icon && typeof item.icon !== 'string' && (
-                <div className="w-10 h-10 bg-transparent rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
-                  <item.icon className="w-6 h-6 text-primary" />
-                </div>
-              )}
-            </div>
-            <div className="flex flex-col gap-1 w-full">
-              <div className="flex items-center justify-between gap-2">
-                <h3 className="font-medium text-foreground text-sm sm:text-base">
-                  {item.title}
-                </h3>
-                <ArrowRight className="w-4 h-4 text-primary opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+      <Card 
+        className="h-full hover:shadow-lg transition-all duration-300 cursor-pointer group"
+        onClick={item.onClick}
+      >
+          <CardContent className="p-4">
+            <div className="flex flex-row items-start sm:items-center gap-3">
+              <div className="flex-shrink-0">
+                {item.icon && typeof item.icon !== 'string' && (
+                  <div className="w-10 h-10 bg-transparent rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+                    <item.icon className="w-6 h-6 text-primary" />
+                  </div>
+                )}
               </div>
-              <p className="text-xs sm:text-sm text-muted-foreground">
-                {item.subtitle}
-              </p>
+              <div className="flex flex-col gap-1 w-full">
+                <div className="flex items-center justify-between gap-2">
+                  <h3 className="font-medium text-foreground text-sm sm:text-base">
+                    {item.title}
+                  </h3>
+                  <ArrowRight className="w-4 h-4 text-primary opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+                </div>
+                <p className="text-xs sm:text-sm text-muted-foreground">
+                  {item.subtitle}
+                </p>
+              </div>
             </div>
-          </div>
-        </CardContent>
+          </CardContent>
       </Card>
-    );
+  );
 
     const HorizontalCard = ({ item }) => (
         <Card className="h-full hover:shadow-lg transition-shadow bg-background hover:bg-primary/5 cursor-pointer">

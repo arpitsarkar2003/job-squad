@@ -20,42 +20,22 @@ import ScrollToTop from "./components/ScrollToTop";
 import CompanySignupPage from "./pages/Register/CompanyRegister";
 import CompanyLogin from "./pages/Login/CompanyLogin";
 
+import { DashboardRoutes } from "./dashboardRoutes";
 import DashboardLayout from "./pages/Dashboard/DashboardLayout";
 
-// // Candidate Routes
-// import { CandidateDashboard } from "./pages/Dashboard/candidate/CandidateDashboard";
-// import { CandidateProfile } from "./pages/Dashboard/candidate/CandidateProfile";
-// import { CandidateResume } from "./pages/Dashboard/candidate/CandidateResume";
-// import { CandidateAppliedJobs } from "./pages/Dashboard/candidate/CandidateAppliedJobs";
-// import { CandidateSavedJobs } from "./pages/Dashboard/candidate/CandidateSavedJobs";
-// import { CandidateFollowingCompanies } from "./pages/Dashboard/candidate/CandidateFollowingCompanies";
-// import { CandidateMeetings } from "./pages/Dashboard/candidate/CandidateMeetings";
-// import { CandidateJobAlerts } from "./pages/Dashboard/candidate/CandidateJobAlerts";
-// import { CandidateSettings } from "./pages/Dashboard/candidate/CandidateSettings";
-// import { CandidateShortlistedJobs } from "./pages/Dashboard/candidate/CandidateShortlistedJobs";
-// import { CandidateMessages } from "./pages/Dashboard/candidate/CandidateMessages";
-
-// // Company Routes
-// import { CompanyDashboard } from "./pages/Dashboard/company/CompanyDashboard";
-// import { CompanyProfile } from "./pages/Dashboard/company/CompanyProfile";
-// import { CompanyPostJob } from "./pages/Dashboard/company/CompanyPostJob";
-// import { CompanyManageJobs } from "./pages/Dashboard/company/CompanyManageJobs";
-// import { CompanyAllCandidates } from "./pages/Dashboard/company/CompanyAllCandidates";
-// import { CompanyShortlistedResumes } from "./pages/Dashboard/company/CompanyShortlistedResumes";
-// import { CompanyMessages } from "./pages/Dashboard/company/CompanyMessages";
-// import { CompanyMeetings } from "./pages/Dashboard/company/CompanyMeetings";
-// import { CompanyResumeAlerts } from "./pages/Dashboard/company/CompanyResumeAlerts";
-// import { CompanySettings } from "./pages/Dashboard/company/CompanySettings";
-// import { AdminDashboard } from "./pages/Dashboard/admin/AdminDashboard";
-// import { AdminManageCandidates } from "./pages/Dashboard/admin/users/AdminManageCandidates";
-// import { AdminManageCompanies } from "./pages/Dashboard/admin/users/AdminManageCompanies";
-// import { AdminManageUnauthorized } from "./pages/Dashboard/admin/users/AdminManageUnauthorized";
-// import { AdminViewArticles } from "./pages/Dashboard/admin/articles/AdminViewArticles";
-// import { AdminPostArticle } from "./pages/Dashboard/admin/articles/AdminPostArticle";
-// import { AdminPostRequirement } from "./pages/Dashboard/admin/AdminPostRequirement";
-// import { AdminSettings } from "./pages/Dashboard/admin/AdminSettings";
 import { store } from "./store";
-import { DashboardRoutes } from "./dashboardRoutes";
+
+
+import ComingSoon from "./components/ComingSoon";
+import NotFound from "./components/NotFound";
+// List of paths that should show the coming soon page
+const comingSoonPaths = [
+  '/marketplace',
+  '/enterprise',
+  '/resources',
+  '/upload-cv'
+  // Add more paths as needed
+];
 
 
 createRoot(document.getElementById("root")).render(
@@ -133,6 +113,18 @@ createRoot(document.getElementById("root")).render(
             <Route path="/company" element={<Company />} />
             <Route path="/companyregister" element={<CompanySignupPage />} />
             <Route path="/companysignin" element={<CompanyLogin />} />
+
+            {/* Coming Soon Routes */}
+            {comingSoonPaths.map(path => (
+              <Route
+                key={path}
+                path={path}
+                element={<ComingSoon />}
+              />
+            ))}
+
+
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
       </BrowserRouter>

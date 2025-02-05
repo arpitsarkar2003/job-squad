@@ -1,23 +1,14 @@
-import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectItem,
-  SelectTrigger,
-  SelectContent,
-} from "@/components/ui/select";
-import { Search } from "lucide-react";
-import { Blinds } from "lucide-react";
 import HeroImg1 from "@/assets/hero1.jpg";
 import { useState } from "react";
 import SearchBarApp from "@/components/SearchBarApp";
+import { useNavigate } from "react-router";
 
 const Hero = () => {
-  const [selectedIndustry, setSelectedIndustry] = useState("");
-  const [selectedLocation, setSelectedLocation] = useState("");
-  const [keyword, setKeyword] = useState("");
+  const navigate = useNavigate();
+  const popularSearches = ["Designer", "Web", "iOS", "Developer", "PHP", "Senior", "Engineer"];
 
-  const handleSearch = () => {
-    console.log({ selectedIndustry, selectedLocation, keyword });
+  const handleSearchClick = (query) => {
+    navigate(`/jobs?query=${query}`);
   };
 
   return (
@@ -43,11 +34,17 @@ const Hero = () => {
           </div>
 
           {/* Popular Searches */}
-          <div >
+          <div>
             <strong>Popular Searches:</strong>{" "}
-            <span className="text-primary-light underline cursor-pointer">
-              Designer, Web, iOS, Developer, PHP, Senior, Engineer
-            </span>
+            {popularSearches.map((search, index) => (
+              <span
+                key={index}
+                className="text-primary-light underline cursor-pointer mx-1"
+                onClick={() => handleSearchClick(search)}
+              >
+                {search}
+              </span>
+            ))}
           </div>
         </div>
 

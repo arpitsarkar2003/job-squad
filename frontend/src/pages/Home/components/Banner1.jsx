@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import img1 from '../image2.png'
+import { Link } from 'react-router';
 const JobMatchHero = () => {
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -83,6 +84,7 @@ const JobMatchHero = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
+                <Link to='/upload-cv'>
                 <Button
                   size="lg"
                   className="bg-primary-light hover:bg-primary-700 text-white rounded-full px-8 h-12 md:h-14 text-base md:text-lg font-medium"
@@ -90,6 +92,7 @@ const JobMatchHero = () => {
                   Upload Your CV 
                   <ChevronRight className="ml-2 w-5 h-5" />
                 </Button>
+                </Link>
               </motion.div>
             </motion.div>
 
