@@ -4,7 +4,7 @@ import JobSection from './components/JobSection'
 const JobLayout = () => {
   return (
     <div>
-      <div className='bg-primary-ultra/10'>
+      <div className='bg-primary-ultra/10 pt-28'>
         <JobBanner />
       </div>
 

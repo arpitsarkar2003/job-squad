@@ -15,7 +15,7 @@ import JobPostingBanner from "./components/JobPostingBanner";
 
 const HomePage = () => {
   return (
-    <div>
+    <div className="">
       <Hero />
 
       <div>

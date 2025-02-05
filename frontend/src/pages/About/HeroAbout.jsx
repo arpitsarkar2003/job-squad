@@ -10,22 +10,23 @@ import AboutBanner from "./AboutBanner";
 
 const AboutUs = () => {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 ">
       {/* Hero Section */}
-      <div className="relative h-48 bg-gray-900">
+      <div className="relative h-[300px]">
         <div className="absolute inset-0">
           <img
             src={img2}
             alt="Office space"
-            className="w-full h-full object-cover opacity-50"
+            className="w-full h-full object-cover"
           />
+          <div className="absolute inset-0 bg-white opacity-80"></div>
         </div>
         <div className="relative flex items-center justify-start pl-10 h-full max-w-6xl">
           <div className="max-w-6xl">
-            <h1 className="text-4xl font-bold text-white font-ubuntu">
+            <h1 className="text-4xl font-bold text-black font-ubuntu">
               About Us
             </h1>
-            <h2 className="text-white pt-3">
+            <h2 className="text-black pt-3">
               Get latest Updates and News Here
             </h2>
           </div>
@@ -35,7 +36,7 @@ const AboutUs = () => {
       {/* Main Content */}
       <div className="max-w-6xl mx-auto px-4 py-12">
         <div className="text-center mb-12">
-            <h2 className="text-2xl font-bold text-grey-muted font-ubuntu opacity-15">OUR COMPANY</h2>
+          <h2 className="text-2xl font-bold text-grey-muted font-ubuntu opacity-15">OUR COMPANY</h2>
           <h2 className="text-4xl font-semibold text-gray-900 mb-4 font-ubuntu ">About Our Company</h2>
           <p className="text-gray-600 max-w-2xl mx-auto font-lato font-normal">
             Connect with over 80,000 expert freelancers and talented
@@ -137,8 +138,8 @@ const AboutUs = () => {
           </CardContent>
         </Card>
       </div>
-      
-      {/* How it Works */}  
+
+      {/* How it Works */}
       <HowItWorks />
 
       {/* Who Love Us */}

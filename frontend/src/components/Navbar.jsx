@@ -56,44 +56,53 @@ const Navbar = () => {
       ],
     },
     {
-      label: "Recruiters",
-      dropdown: [
-        {
-          title: "Explore",
-          items: [
-            { label: "Top Recruiters", link: "/recruiters/top" },
-            { label: "Recruiter Login", link: "/recruiters/login" },
-            { label: "Post a Job", link: "/recruiters/post-job" },
-          ],
-        },
-      ],
-    },
-    {
       label: "Candidates",
       dropdown: [
         {
-          title: "Explore",
+          title: "Career Tools",
           items: [
-            { label: "Create Resume", link: "/candidates/resume" },
-            { label: "Job Alerts", link: "/candidates/job-alerts" },
             { label: "My Applications", link: "/candidates/applications" },
+            { label: "Job Alerts", link: "/candidates/job-alerts" },
+            { label: "Resume Builder", link: "/candidates/resume-builder" },
+          ],
+        },
+        {
+          title: "Resources",
+          items: [
+            { label: "Interview Tips", link: "/resources/interview-prep" },
+            { label: "Salary Guide", link: "/resources/salary-guide" },
+            { label: "Career Advice", link: "/blogs" },
           ],
         },
       ],
     },
     {
-      label: "Pages",
+      label: "Companies",
       dropdown: [
         {
-          title: "",
+          title: "Explore",
           items: [
-            { label: "About Us", link: "/about" },
+            { label: "Browse Companies", link: "/companies" },
+            { label: "Top Companies", link: "/companies/top" },
+            { label: "Company Reviews", link: "/companies/reviews" },
+          ],
+        },
+      ],
+    },
+    {
+      label: "Resources",
+      dropdown: [
+        {
+          title: "Guides & Help",
+          items: [
             { label: "FAQ", link: "/faq" },
+            { label: "Resume Writing", link: "/resources/resume-tips" },
             { label: "Privacy Policy", link: "/privacy-policy" },
           ],
         },
       ],
     },
+    { label: "Blogs", link: "/blogs" }, // Moved Blogs here
     { label: "Contact", link: "/contact" },
   ];
 
@@ -121,9 +130,10 @@ const Navbar = () => {
     }
   };
   return (
-    <nav
-      className={`relative ${window.location.pathname !== "/" ? "bg-transparent" : "bg-primary-ultra/30"} w-full z-10`}
-    >
+    // <nav
+    //   className={`relative ${window.location.pathname !== "/" ? "bg-transparent" : "bg-primary-ultra/30"} w-full z-10`}
+    // >
+    <nav className="w-full" >
       <div className="container flex justify-between items-center py-4 w-full max-w-6xl mx-auto px-4 ">
         {/* Logo */}
         <div className="text-2xl font-bold text-primary-light">
@@ -131,16 +141,16 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Menu */}
-        <ul className="hidden lg:flex items-center space-x-8 mx-auto">
+        <ul className="hidden lg:flex items-center space-x-4">
           {menuItems.map((item, index) => (
             <li key={index} className="relative group">
               <div className="flex items-center cursor-pointer">
                 {item.link ? (
-                  <Link to={item.link} className="text-lg font-medium hover:text-primary-ultra ">
+                  <Link to={item.link} className="text-base font-medium hover:text-primary-ultra ">
                     {item.label}
                   </Link>
                 ) : (
-                  <span className="text-lg font-medium hover:text-primary-ultra">{item.label}</span>
+                  <span className="text-base font-medium hover:text-primary-ultra">{item.label}</span>
                 )}
                 {item.dropdown && <ChevronDown className="ml-2 w-4 h-4" />}
               </div>
@@ -190,7 +200,7 @@ const Navbar = () => {
           ) : (
             <>
               <Link to="/register">
-                <Button variant="a" className="underline hover:border-primary-dark hover:no-underline border">
+                <Button variant="transparent" className="">
                   Register
                 </Button>
               </Link>

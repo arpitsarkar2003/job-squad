@@ -25,7 +25,7 @@ const JobBanner = () => {
 
     return (
         <motion.div
-            className="w-full max-w-6xl mx-auto mt-12 min-h-[300px] md:px-8 lg:px-16 py-8 md:py-12 relative overflow-hidden rounded-lg"
+            className="w-full max-w-6xl mx-auto min-h-[300px] md:px-8 lg:px-16 py-8 md:py-12 relative overflow-hidden rounded-lg"
             initial="hidden"
             animate="visible"
             variants={containerVariants}

@@ -21,7 +21,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="bg-primary-ultra/30 w-full">
+    <div className="bg-primary-ultra/30 w-full pt-10">
       <div className="container flex flex-col-reverse lg:flex-row items-center justify-between  py-20 gap-12 w-full max-w-6xl mx-auto px-4">
         {/* Left Content */}
         <div className="lg:w-[60%] space-y-12">
