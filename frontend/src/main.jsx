@@ -33,7 +33,26 @@ const comingSoonPaths = [
   '/marketplace',
   '/enterprise',
   '/resources',
-  '/upload-cv'
+  '/upload-cv',
+  '/candidates/applications',
+  '/candidates/job-alerts',
+  '/candidates/resume-builder',
+  '/resources/interview-prep',
+  '/resources/salary-guide',
+  '/companies',
+  '/companies/top',
+  '/companies/reviews',
+  '/faq',
+  '/resources/resume-tips',
+  '/privacy-policy',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '',
   // Add more paths as needed
 ];
 
